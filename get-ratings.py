@@ -16,7 +16,7 @@ total_pages = 1
 total_rows = 0
 
 with open(
-    "reading_food_ratings_all.csv", mode="w", newline="", encoding="utf-8"
+    "reading_food_ratings.csv", mode="w", newline="", encoding="utf-8"
 ) as csv_file:
     writer = csv.DictWriter(csv_file, fieldnames=fields)
     writer.writeheader()
@@ -50,4 +50,4 @@ with open(
         # print(f"Scraped {page}/{total_pages} pages | Total Rows: {total_rows}")
         page += 1
 
-print(f"Scraping completed. Extracted {total_rows} total rows across {total_pages} pages into 'reading_food_ratings_all.csv'.")
+print(f"Scraping completed. Extracted {total_rows} total rows across {total_pages} pages into 'reading_food_ratings.csv'.")
