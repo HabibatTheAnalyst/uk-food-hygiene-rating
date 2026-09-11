@@ -1,3 +1,18 @@
+# UK Food Hygiene Rating Data
+[Link]{https://ratings.food.gov.uk/open-data}
+
+The data was gotten from the Food hygiene ratings site [here]{https://ratings.food.gov.uk/}. There are [guidelines]{https://ratings.food.gov.uk/open-data-resources/documents/FHRS_APIv1_guidance_april24.pdf} on the site on how to use the API to access the food hygiene rating data. 
+
+----------
+
+### About the data
+The data provides the food hygiene rating or inspection result given to a business and reflect the standards of food hygiene found on the date of inspection or visit by the local authority. Businesses include restaurants, pubs, cafés, takeaways, hotels and other places consumers eat, as well as supermarkets and other food shops.
+
+as at when collected or the last rating date ....
+
+-----------
+### General Notes below
+
 The *uk-food-hygiene-rating* was created locally in the *projects* folder. Then the *requirements.txt* file was created using *touch file.txt*.
 This repo cannot be stagged or pushed to github directly. 
 - You first need to initialize it using 'git init'
