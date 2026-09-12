@@ -1,5 +1,5 @@
 Get ratings for Reading from https://api1-ratings.food.gov.uk/search/en-gb/%5E/reading/xml
 Get the rating score descriptor from https://ratings.food.gov.uk/open-data-resources/lookupData/ScoreDescriptors.xml 
 Check why the script is returning inflated number(2101) - It didn't filter on Reading so other cities/towns were included. Using the Reading Local Authority (884) instead
-its still inflated(1349) - check in excel
+its still inflated(1349) - check in excel (double-counting in loop caused total_rows inflations)
 Update README as required
