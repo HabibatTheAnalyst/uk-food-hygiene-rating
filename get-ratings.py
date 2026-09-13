@@ -27,8 +27,8 @@ root = ET.fromstring(response.content)
 
 with open(
     "reading_food_ratings.csv", mode="w", newline="", encoding="utf-8"
-) as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=list(field_map.keys()))
+) as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=list(field_map.keys()))
     writer.writeheader()
 
     establishments = root.findall(".//EstablishmentDetail")
@@ -39,4 +39,4 @@ with open(
         }
         writer.writerow(row)
 
-print(f"Scraping done. {len(establishments)} total records.")
+print(f"Scraping done. {len(establishments)} total rows.")

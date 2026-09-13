@@ -1,0 +1,18 @@
+description,id,score,scorecategory
+Very good,1,0,Confidence
+Good,2,5,Confidence
+Generally satisfactory,3,10,Confidence
+Major improvement necessary,4,20,Confidence
+Urgent improvement necessary,5,30,Confidence
+Very good,6,0,Hygiene
+Good,7,5,Hygiene
+Generally satisfactory,8,10,Hygiene
+Improvement necessary,9,15,Hygiene
+Major improvement necessary,10,20,Hygiene
+Urgent improvement necessary,11,25,Hygiene
+Very good,12,0,Structural
+Good,13,5,Structural
+Generally satisfactory,14,10,Structural
+Improvement necessary,15,15,Structural
+Major improvement necessary,16,20,Structural
+Urgent improvement necessary,17,25,Structural
