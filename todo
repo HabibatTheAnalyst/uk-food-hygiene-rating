@@ -3,3 +3,8 @@ Get the rating score descriptor from https://ratings.food.gov.uk/open-data-resou
 Check why the script is returning inflated number(2101) - It didn't filter on Reading so other cities/towns were included. Using the Reading Local Authority (884) instead
 its still inflated(1349) - check in excel (double-counting in loop caused total_rows inflations)
 Update README as required
+Read about the data before moving forward - take nte of what to do and what more to get
+push data to postgre/superbase or any other database system.
+Query from there using python in vscode
+Clean and push out put to s3
+create chart using Flourish, Powerbi, qgis
