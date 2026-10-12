@@ -19,7 +19,7 @@ root = ET.fromstring(response.content)
 descriptors = root.findall("./scoreDescriptors/scoreDescriptors")
 
 with open(
-    "score_descriptors.csv", mode="w", newline="", encoding="utf-8"
+    "csvs/score_descriptors.csv", mode="w", newline="", encoding="utf-8"
 ) as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=field_map.keys())
     writer.writeheader()

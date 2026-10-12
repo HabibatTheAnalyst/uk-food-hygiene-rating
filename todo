@@ -1,10 +1,15 @@
-Get ratings for Reading from https://api1-ratings.food.gov.uk/search/en-gb/%5E/reading/xml
-Get the rating score descriptor from https://ratings.food.gov.uk/open-data-resources/lookupData/ScoreDescriptors.xml 
+Get ratings for Reading from https://api1-ratings.food.gov.uk/search/en-gb/%5E/reading/xml DONE
+Get the rating score descriptor from https://ratings.food.gov.uk/open-data-resources/lookupData/ScoreDescriptors.xml DONE
 Check why the script is returning inflated number(2101) - It didn't filter on Reading so other cities/towns were included. Using the Reading Local Authority (884) instead
-its still inflated(1349) - check in excel (double-counting in loop caused total_rows inflations)
+its still inflated(1349) - check in excel (double-counting in loop caused total_rows inflations) DONE 
 Update README as required
-Read about the data before moving forward - take nte of what to do and what more to get
-push data to postgre/superbase or any other database system.
+Read about the data before moving forward - take nte of what to do and what more to get DONE
+push data to postgre/superbase or any other database system. DONE
+
+
 Query from there using python in vscode
 Clean and push out put to s3
 create chart using Flourish, Powerbi, qgis
+the row number changes, some data removed or added. - how to handle this - append new data . drop old once? or add to new table? 
+
+create/build ERD

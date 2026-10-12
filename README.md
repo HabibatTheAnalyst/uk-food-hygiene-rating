@@ -33,6 +33,15 @@ A missing score doesn't mean an error or that the business wasn't rated. It just
 If you're analysing the scores (e.g. averaging hygiene scores, or checking how scores map to ratings), you should expect gaps and decide how to handle them, such as excluding those rows or analysing them separately from the rating-only data.
 Don't treat blanks as zeros. Note that in this scoring system a lower score is actually better (0 is the best), so filling blanks with 0 would make those businesses look perfect.
 
+-----------
+### Connecting to Supabase
+After creating a project in Supabase, there are different links available to publish or connect to the project. to move data from vscode into the projcet database i used the "Direct COnnection String" link "postgresql://postgres:[YOUR-PASSWORD]@db.squgvbjyfosongdsojcc.supabase.co:5432/postgres" 
+
+there was a RLS pop up that needed to be fixed and was tagged critical. This warning is Supabase telling me the table has no access protection yet. 
+
+What RLS is: Row Level Security is a Postgres feature that decides who can read, add, edit or delete rows in a table. Supabase automatically exposes every table in the public schema through a web API (PostgREST). The project's anon key is designed to be visible in website code, so anyone who finds it can call that API.
+
+Why it's flagged critical: with RLS off, anyone holding the anon key can read, change or delete every row in the table, not just read it. Your data is public government open data, so reading it isn't sensitive. The risk is someone editing or wiping it.
 
 -----------
 ### General Notes below
