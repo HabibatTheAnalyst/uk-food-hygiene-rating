@@ -9,7 +9,7 @@ push data to postgre/superbase or any other database system. DONE
 
 Query from there using python in vscode
 Clean and push out put to s3
-create chart using Flourish, Powerbi, qgis
+create chart using Flourish, Powerbi, qgis, netabse
 the row number changes, some data removed or added. - how to handle this - append new data . drop old once? or add to new table? 
-
+  
 create/build ERD

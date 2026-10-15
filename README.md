@@ -42,8 +42,13 @@ there was a RLS pop up that needed to be fixed and was tagged critical. This war
 What RLS is: Row Level Security is a Postgres feature that decides who can read, add, edit or delete rows in a table. Supabase automatically exposes every table in the public schema through a web API (PostgREST). The project's anon key is designed to be visible in website code, so anyone who finds it can call that API.
 
 Why it's flagged critical: with RLS off, anyone holding the anon key can read, change or delete every row in the table, not just read it. Your data is public government open data, so reading it isn't sensitive. The risk is someone editing or wiping it.
+---
 
------------
+the `get-ratings.py`code scrapes data from https://ratings.food.gov.uk/OpenDataFiles/FHRS884en-GB.xml . if an establishment gets rerated, a new row is added for that establishment else already existing data remains the same/unchmaged. only new establishment gets added or when a new rating is set for an already existing establishmnet. FHRSID is unique and has no null values.
+
+also, for the scores/value columns , empty cells doesnt mean zero and so the script retaines it as null or none else it'll affect the overall rating
+---
+
 ### General Notes below
 
 The *uk-food-hygiene-rating* was created locally in the *projects* folder. Then the *requirements.txt* file was created using *touch file.txt*.

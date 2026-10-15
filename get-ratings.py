@@ -17,6 +17,7 @@ TABLE_NAME = "reading_food_ratings"
 DB_URL_ENV_VAR = "SUPABASE_DB_URL"
 
 FIELD_MAP = {
+    "FHRSID": "FHRSID",
     "BusinessName": "BusinessName",
     "BusinessType": "BusinessType",
     "AddressLine1": "AddressLine1",
@@ -34,7 +35,7 @@ FIELD_MAP = {
 }
 
 # Columns that should be numbers in the database (blank -> NULL, never 0)
-INT_COLUMNS = {"Hygiene", "Structural", "ConfidenceInManagement"}
+INT_COLUMNS = {"FHRSID", "Hygiene", "Structural", "ConfidenceInManagement"}
 FLOAT_COLUMNS = {"Longitude", "Latitude"}
 
 def fetch_establishments(url=BULK_URL):
@@ -84,11 +85,11 @@ def get_connection():
     return psycopg2.connect(db_url)
 
 def create_table(cur):
-    #create the table if it doesn't exist yet
     cur.execute(
         f"""
         CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
             id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            FHRSID BIGINT NOT NULL,
             BusinessName TEXT,
             BusinessType TEXT,
             AddressLine1 TEXT,
@@ -96,33 +97,42 @@ def create_table(cur):
             AddressLine3 TEXT,
             PostCode TEXT,
             RatingValue TEXT,
-            RatingDate TEXT,
+            RatingDate DATE,
             LocalAuthorityName TEXT,
             Hygiene INTEGER,
             Structural INTEGER,
             ConfidenceInManagement INTEGER,
             Longitude DOUBLE PRECISION,
-            Latitude DOUBLE PRECISION
+            Latitude DOUBLE PRECISION,
+            first_seen DATE NOT NULL DEFAULT CURRENT_DATE,
+            UNIQUE NULLS NOT DISTINCT (FHRSID, RatingDate, RatingValue)
         );
         """
     )
 
 def push_to_supabase(rows):
-    #Replace the table contents with the latest rows (safe to re-run)
     columns = list(FIELD_MAP.keys())
     values = [[_clean_value(col, row[col]) for col in columns] for row in rows]
 
     conn = get_connection()
     try:
-        with conn, conn.cursor() as cur:  # 'with conn' commits, or rolls back on error
+        with conn, conn.cursor() as cur:
             create_table(cur)
-            cur.execute(f"TRUNCATE TABLE {TABLE_NAME} RESTART IDENTITY;")
+            cur.execute(f"SELECT COUNT(*) FROM {TABLE_NAME};")
+            before = cur.fetchone()[0]
+
             execute_values(
                 cur,
-                f"INSERT INTO {TABLE_NAME} ({', '.join(columns)}) VALUES %s",
+                f"""
+                INSERT INTO {TABLE_NAME} ({', '.join(columns)}) VALUES %s
+                ON CONFLICT (FHRSID, RatingDate, RatingValue) DO NOTHING
+                """,
                 values,
                 page_size=1000,
             )
+
+            cur.execute(f"SELECT COUNT(*) FROM {TABLE_NAME};")
+            print(f"{cur.fetchone()[0] - before} new rating rows added.")
     finally:
         conn.close()
 
